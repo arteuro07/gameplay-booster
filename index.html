@@ -19,14 +19,75 @@ button.chip{background:#232842;flex:none}select,input[type=number]{background:#2
 .bar{height:10px;background:#232842;border-radius:5px;overflow:hidden;margin-top:10px}
 .bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--ac),var(--ac2))}
 small{color:var(--mu)}h3{margin:0 0 4px;font-size:1rem}.g2{display:grid;grid-template-columns:1fr 1fr;gap:8px}
-</style></head><body>
-<h1>🎮 Gameplay <span>Booster PRO</span></h1>
-<p class="s">Vrai moteur : interpolation 60 fps par mouvement (GPU), netteté, couleurs, export MP4 H.264 + son. 100 % dans ton navigateur (Chrome / Edge).</p>
 
-<div class="card"><div class="drop" id="drop">📂 Choisir une vidéo gameplay<input id="file" type="file" accept="video/*" hidden></div></div>
+:root{color-scheme:dark;--bg:#080b14;--panel:#101827;--panel2:#151f31;--line:#26334b;--ac:#8b5cf6;--ac2:#22d3ee;--tx:#f4f7ff;--mu:#91a0b8;--good:#34d399}
+*{box-sizing:border-box}
+body{max-width:1120px;padding:22px 20px 60px;background:radial-gradient(ellipse at 15% -10%,#282052 0,transparent 38%),radial-gradient(ellipse at 95% 0%,#103044 0,transparent 32%),var(--bg);font-family:Inter,ui-sans-serif,system-ui,-apple-system,sans-serif;letter-spacing:.01em}
+.topbar{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:4px 2px 24px;border-bottom:1px solid #ffffff12;margin-bottom:30px}
+.brand{display:flex;align-items:center;gap:11px;font-weight:800;letter-spacing:.02em}
+.brandmark{display:grid;place-items:center;width:40px;height:40px;border-radius:13px;background:linear-gradient(135deg,var(--ac),#4f46e5 55%,var(--ac2));box-shadow:0 8px 28px #8b5cf644;font-size:20px}
+.brandname{font-size:1rem}.brandname span{color:#a78bfa}
+.topmeta{display:flex;align-items:center;gap:9px;color:var(--mu);font-size:.78rem}
+.pill{border:1px solid #ffffff1c;background:#ffffff09;border-radius:99px;padding:7px 11px}
+.pill.live{color:#a7f3d0;border-color:#34d39944}
+.hero{display:flex;justify-content:space-between;align-items:end;gap:18px;margin:0 0 22px}
+.eyebrow{color:#a78bfa;font-size:.72rem;font-weight:800;letter-spacing:.16em;text-transform:uppercase;margin:0 0 9px}
+h1{font-size:clamp(1.7rem,4vw,2.65rem);line-height:1.08;letter-spacing:-.045em;margin:0 0 10px}
+h1 span{background:linear-gradient(90deg,#c4b5fd,#67e8f9);-webkit-background-clip:text;color:transparent}
+.s{max-width:660px;color:var(--mu);font-size:.94rem;line-height:1.65;margin:0}
+.hero-note{color:#b7c5dc;font-size:.78rem;text-align:right;white-space:nowrap}
+.card{background:linear-gradient(145deg,#121b2b,#0f1725);border:1px solid var(--line);border-radius:18px;padding:19px;margin-bottom:15px;box-shadow:0 14px 40px #00000020}
+.drop{border:1px dashed #7c6be7;background:linear-gradient(120deg,#8b5cf614,#22d3ee0a);text-align:center;padding:35px 18px;border-radius:14px;cursor:pointer;transition:.2s}
+.drop:hover{border-color:var(--ac2);background:#8b5cf620;transform:translateY(-1px)}
+.drop strong{display:block;font-size:1.05rem;margin:8px 0 5px}.drop small{display:block}
+.dropicon{display:grid;place-items:center;margin:auto;width:48px;height:48px;border-radius:15px;background:#8b5cf629;color:#c4b5fd;font-size:23px}
+.stage{background:#05070c;border:1px solid #ffffff18;border-radius:15px;overflow:hidden}
+canvas{width:100%;display:block;max-height:65vh;object-fit:contain}
+.tag{font-size:.68rem;font-weight:800;letter-spacing:.08em;background:#080b14d9;border:1px solid #ffffff22;padding:5px 9px;border-radius:7px}
+label{font-size:.78rem;color:#a7b4c9;margin-top:13px}
+label b{color:#e7eefa;font-variant-numeric:tabular-nums}
+input[type=range]{accent-color:var(--ac2);height:24px}
+.row{gap:9px;margin-top:13px}
+button,select,input[type=number]{background:#202c42;color:#f7f8ff;border:1px solid #ffffff14;border-radius:11px;padding:12px 14px;font-size:.88rem;min-height:44px}
+button{cursor:pointer;transition:transform .15s,border-color .15s,filter .15s}
+button:hover{filter:brightness(1.12);border-color:#a78bfa66;transform:translateY(-1px)}
+button.go{background:linear-gradient(100deg,#7c3aed,#5b5ce2 60%,#0891b2);border:0;font-weight:800;box-shadow:0 8px 24px #6d28d944}
+button.chip{background:#1a2639;border:1px solid #ffffff12}
+button:disabled{opacity:.45;cursor:not-allowed;transform:none}
+h3{font-size:1rem;letter-spacing:-.01em;margin:0 0 8px}
+.g2{gap:12px}
+.g2>div{min-width:0}
+select{width:100%;margin-top:5px}
+.bar{height:8px;background:#253149;border-radius:20px}
+.bar i{background:linear-gradient(90deg,var(--ac),var(--ac2));border-radius:20px;transition:width .2s}
+small{font-size:.76rem;line-height:1.5}
+#tinfo{display:block;margin-top:8px}
+#out{background:#05070c;border:1px solid #ffffff18}
+#dl button{width:100%}
+.sectionhead{display:flex;align-items:center;gap:10px;margin-bottom:7px}
+.sectionnum{display:grid;place-items:center;width:27px;height:27px;border-radius:9px;background:#8b5cf626;color:#c4b5fd;font-size:.75rem;font-weight:800}
+.helper{color:var(--mu);font-size:.76rem;margin:0 0 12px}
+.footer-note{text-align:center;color:#71809a;font-size:.73rem;padding:16px 8px}
+@media(max-width:620px){body{padding:14px 12px 40px}.topbar{padding-bottom:16px;margin-bottom:22px}.topmeta .pill:first-child{display:none}.hero{display:block}.hero-note{text-align:left;margin-top:12px}.card{padding:14px;border-radius:15px}.drop{padding:27px 14px}.g2{grid-template-columns:1fr 1fr}.row button{font-size:.8rem;padding:10px 9px}.brandname{font-size:.9rem}}
+@media(max-width:390px){.g2{grid-template-columns:1fr}.topmeta{font-size:.7rem}}
+
+</style></head><body>
+<header class="topbar">
+ <div class="brand"><div class="brandmark">▶</div><div class="brandname">EURO <span>GAMEPLAY</span></div></div>
+ <div class="topmeta"><span class="pill">ÉDITION VIDÉO</span><span class="pill live">● Traitement local</span></div>
+</header>
+<section class="hero">
+ <div><p class="eyebrow">STUDIO CRÉATEUR · VIDÉO</p>
+ <h1>Donne du style à tes<br><span>gameplays.</span></h1>
+ <p class="s">Améliore les couleurs, la netteté et le cadrage de tes captures. Prévisualise chaque réglage puis exporte ton montage en MP4.</p></div>
+ <div class="hero-note">🔒 Tes vidéos restent sur ton appareil</div>
+</section>
+<div class="card"><div class="drop" id="drop"><div class="dropicon">↥</div><strong>Importer une vidéo gameplay</strong><small>Appuie pour choisir un fichier depuis ton téléphone</small><small>MP4 · WebM · MOV selon le navigateur</small><input id="file" type="file" accept="video/*" hidden></div></div>
 
 <div id="work" style="display:none">
 <div class="card">
+ <div class="sectionhead"><span class="sectionnum">01</span><h3>Aperçu & découpage</h3></div>
+ <p class="helper">Compare le rendu original et tes réglages en temps réel.</p>
  <div class="stage"><canvas id="cv"></canvas><span class="tag" style="left:8px">AVANT</span><span class="tag" style="right:8px">APRÈS</span>
  <div id="line" style="position:absolute;top:0;bottom:0;width:2px;background:#fff;left:50%"></div></div>
  <label>↔ Comparer avant / après</label><input id="split" type="range" min="0" max="100" value="50">
@@ -35,7 +96,7 @@ small{color:var(--mu)}h3{margin:0 0 4px;font-size:1rem}.g2{display:grid;grid-tem
  <small id="tinfo"></small>
 </div>
 
-<div class="card"><h3>🎨 Style</h3>
+<div class="card"><div class="sectionhead"><span class="sectionnum">02</span><h3>Réglages visuels</h3></div><p class="helper">Choisis un style de départ puis ajuste chaque paramètre.</p>
  <div class="row" style="margin-top:4px">
   <button class="chip" data-p="gaming">🔥 Gaming punch</button><button class="chip" data-p="ff">💥 Free Fire vif</button>
   <button class="chip" data-p="nat">🌿 Naturel</button><button class="chip" data-p="cine">🎬 Cinéma</button></div>
@@ -46,7 +107,7 @@ small{color:var(--mu)}h3{margin:0 0 4px;font-size:1rem}.g2{display:grid;grid-tem
  <label>Luminosité <b id="o_bri"></b></label><input id="bri" type="range" min="80" max="125">
 </div>
 
-<div class="card"><h3>⚡ Export</h3>
+<div class="card"><div class="sectionhead"><span class="sectionnum">03</span><h3>Paramètres d’export</h3></div><p class="helper">Configure le format, la qualité et la fluidité avant de lancer le rendu.</p>
  <div class="g2">
   <div><label>Format</label><select id="fmt"><option value="tt">TikTok / Reels 1080×1920</option><option value="yt">YouTube 1920×1080</option><option value="orig">Taille d'origine</option></select></div>
   <div><label>Qualité (débit)</label><select id="br"><option value="8">Standard 8 Mb/s</option><option value="14" selected>Haute 14 Mb/s</option><option value="22">Max 22 Mb/s</option></select></div>
@@ -60,6 +121,7 @@ small{color:var(--mu)}h3{margin:0 0 4px;font-size:1rem}.g2{display:grid;grid-tem
  <div class="row"><a id="dl" style="display:none;flex:1"><button style="width:100%" class="go">⬇ Télécharger la vidéo</button></a></div>
 </div>
 </div>
+<p class="footer-note">EURO GAMEPLAY · Édition vidéo locale · Les performances dépendent de ton navigateur et de ton appareil.</p>
 <video id="v" playsinline muted></video>
 
 <script type="module">
