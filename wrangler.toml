@@ -1,5 +1,6 @@
 name = "gameplay-booster"
-compatibility_date = "2026-11-01"
+account_id = "b1f939adc65c3571e89cb07a848989f4"
+compatibility_date = "2026-11-19"
 
 [assets]
 directory = "./public"
