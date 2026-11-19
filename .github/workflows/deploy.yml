@@ -2,14 +2,45 @@ name: Deploy Cloudflare
 on:
   push:
     branches: [main]
+  workflow_dispatch:
+permissions:
+  contents: read
 jobs:
-  deploy:
+  validate:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - run: mkdir -p public && cp index.html public/
-      - uses: cloudflare/wrangler-action@v3
+      - uses: actions/checkout@v6
+      - name: Prepare static assets
+        run: |
+          mkdir -p public
+          cp index.html public/index.html
+          test -s public/index.html
+      - name: Validate app entrypoint
+        run: |
+          grep -q '<html' public/index.html
+          grep -q 'VideoEncoder' public/index.html
+          grep -q 'mp4-muxer' public/index.html
+  deploy:
+    needs: validate
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - name: Prepare static assets
+        run: |
+          mkdir -p public
+          cp index.html public/index.html
+          test -s public/index.html
+      - name: Check Cloudflare token
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+        run: |
+          if [ -z "$CLOUDFLARE_API_TOKEN" ]; then
+            echo "::error::Missing GitHub Actions secret CLOUDFLARE_API_TOKEN. Add a Cloudflare API token with Workers Scripts: Edit permission in Settings > Secrets and variables > Actions."
+            exit 1
+          fi
+      - name: Deploy to Cloudflare Workers
+        uses: cloudflare/wrangler-action@v4
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          wranglerVersion: "4"
           command: deploy
